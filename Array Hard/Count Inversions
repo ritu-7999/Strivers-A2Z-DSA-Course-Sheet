@@ -1,0 +1,67 @@
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    public static long merge(long arr[], int l,int m,int r){
+     int n1=m-l+1;
+
+     int n2=r-m;
+     long c=0;
+    long[] l1=new long[n1];
+    long[] l2=new long[n2];
+    int i=0,j=0,k=l;
+    for(int x=0;x<n1;x++){
+        l1[x]=arr[l+x];
+    }
+   
+    for(int x=0;x<n2;x++){
+        l2[x]=arr[m+1+x];
+    }
+     i=0;j=0;k=l;
+  
+    while(i<n1 && j<n2){
+        if(l1[i]<=l2[j]){
+            arr[k]=l1[i];
+            i++;
+        }
+        else{
+            arr[k]=l2[j];
+            j++;
+            c+=(n1- i);
+            
+        }
+        k++;
+    }
+    while(i<n1){
+        arr[k]=l1[i];
+        i++;k++;
+    }
+    while(j<n2){
+        arr[k]=l2[j];
+        j++;k++;
+    }
+    return c;
+     
+ }
+    
+    public static long mergesort(long arr[], int l,int r){
+     long c=0;
+     while(l<r){
+        int m=(r+l)/2;
+       c+= mergesort(arr,l,m);
+       c+= mergesort(arr,m+1,r);
+       c+= merge(arr,l,m,r);
+     }
+     return c;
+ }
+ 
+    static long inversionCount(long arr[], long n)
+    {
+        // Your Code Here
+        int l=0,r=(int)n-1;
+ return mergesort(arr,l,r);
+ }
+ 
+    
+}
