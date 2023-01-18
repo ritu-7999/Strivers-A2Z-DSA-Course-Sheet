@@ -1,0 +1,54 @@
+class Solution {
+     public static int merge(int []arr,int l,int m,int h){
+        int inv = 0;
+        int []left = new int[m-l+1];
+        int []right = new int[h-m];
+        int t=0;
+        for(int i =0;i<left.length;i++){
+            left[i] = arr[l+i];
+        }
+        for(int i =0;i<right.length;i++){
+            right[i] = arr[m+1+i];
+        }
+for(int i=0;i<left.length;i++){
+    while(t<right.length && left[i]>(2*(long)right[t])){
+        inv+= left.length-i;
+        t++;
+    }
+}
+        int i =0,j=0,k=l;
+        while(i<left.length && j<right.length){
+            if(left[i]<=right[j]){
+                arr[k++]= left[i++];
+            }
+            else{
+                arr[k++]= right[j++];
+                //here left[i]>right[j]
+                //there is a case of inversion    
+            }
+        }
+        while(i<left.length){
+            arr[k++]= left[i++];
+        }
+        while(j<right.length){
+            arr[k++]= right[j++];
+        }
+        return inv;
+    }
+    public static int mergeSort(int []arr,int low,int high){
+        int inv =0;
+        if(low<high){
+            int mid = (low+high)/2;
+            inv+=mergeSort(arr,low,mid);
+            inv+=mergeSort(arr,mid+1,high);
+            inv+=merge(arr,low,mid,high);
+        }
+        return inv;
+    }
+
+    public int reversePairs(int[] nums) {
+        int l=0, r=nums.length-1;
+        return mergeSort(nums,l,r);
+    }
+
+}
