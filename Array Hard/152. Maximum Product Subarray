@@ -1,0 +1,19 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int lp=1;
+        int j=1;
+        int rp=1;
+        int rm=Integer.MIN_VALUE;
+        int maxpro=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            lp*=nums[i];
+            rp*=nums[nums.length-j-i];
+            rm=Math.max(lp,rp);
+            if(rm>maxpro) maxpro=rm;
+            if(lp==0) lp=1;
+            if(rp==0) rp=1;
+        }
+       
+        return maxpro;
+    }
+}
