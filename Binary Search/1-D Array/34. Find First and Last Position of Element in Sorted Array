@@ -1,0 +1,32 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+    int[] r=new int[2];
+    int n=nums.length;
+    r[0]=binarySearch(nums,n,target,true);
+    r[1]=binarySearch(nums,n,target,false);
+return r;
+    }
+    public static int binarySearch(int[] arr,int n,int x,boolean b){
+        int l=0;
+        int r=n-1;
+        int a=-1;
+        while(l<=r){
+            int m=(l+r)/2;
+             if(arr[m]<x){
+l=m+1;
+            }
+            else if(arr[m]>x){
+r=m-1;
+            }
+            else{
+a=m;
+if(!b){
+l=m+1;
+}
+else r=m-1;
+            }
+        }
+        return a;
+
+    }
+    }
