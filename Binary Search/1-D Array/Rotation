@@ -1,0 +1,18 @@
+int left=0,right=n-1;
+    while(left<right)
+    {   
+        int mid = left+(right-left)/2;
+        if(arr[mid]>=arr[0])
+        {
+           left = mid+1;
+        }
+        else if(arr[mid]<arr[0])
+        {
+            right = mid;
+        }
+    }
+    
+    if(arr[left]<arr[0])
+        return left;
+
+    return 0;}
