@@ -1,0 +1,24 @@
+class Solution
+{
+    public int NthRoot(int n, int m)
+    {
+        // code here
+        if(m==1 || m==0) return m;
+        // if(n==0 || n==1) return m;
+        int l=0;
+        int h=m;
+        while(l<=h){
+            int mid=(l+h)/2;
+            long ans=1;
+            for(int i=1;i<=n;i++){
+                ans=ans*mid;
+                if(ans>m) break;
+            }
+            if(ans==m) return mid;
+           else if(ans>m){h=mid-1;}
+            else l=mid+1;
+        }
+        return -1;
+        
+        
+    }}
