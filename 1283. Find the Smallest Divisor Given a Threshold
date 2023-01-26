@@ -1,0 +1,25 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int min=1;
+        int max=Integer.MIN_VALUE;
+        for(int i: nums){
+            // if(i<min) min=i;
+            if(i>max) max=i;
+        }
+        while(min<=max){
+            int m=(min+max)/2;
+            long sum=0;
+            for(int x:nums){
+             sum+=x/m;
+             if(x%m!=0) sum++;
+            }
+            if(sum>threshold){
+                min=m+1;
+            }
+            else{
+                max=m-1;
+            }
+        }
+        return min;
+    }
+}
