@@ -1,0 +1,32 @@
+class Solution {
+    public static int solve(int n, int k, int[] stalls) {
+        int l=1;
+        Arrays.sort(stalls);
+        int res=0;
+        int r=stalls[n-1];
+        while(l<=r){
+            int m=(l+r)/2;
+            if(canPlaceCow(stalls,k,m)){
+                res=m;
+                l=m+1;
+            }
+            else{
+                r=m-1;
+            }
+        }
+        return res;
+    }
+    public static boolean canPlaceCow(int[] s,int k,int d){
+        int cnt=1;
+        int coord=s[0];
+        for(int i=1;i<s.length;i++){
+            if(s[i]-coord>=d){
+                cnt++;
+                coord=s[i];
+            }
+             if(cnt==k) return true;
+        }
+        return false;
+       
+    }
+}
