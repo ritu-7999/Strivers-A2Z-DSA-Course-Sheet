@@ -1,0 +1,27 @@
+class Solution {
+    public String reverseWords(String s) {
+        int i= 0;
+	int r = s.length();
+
+	String temp = "";
+	String ans = "";
+
+	//Iterate the string and keep on adding to form a word
+	//If empty space is encountered then add the current word to the result
+	while (i<r){
+        while(i<r && s.charAt(i)==' '){
+            i++;
+        }
+        if(i >= r) break;
+        int j=i+1;
+        while(j<r && s.charAt(j)!=' '){
+            j++;
+        }
+        temp=s.substring(i,j);
+        if(ans.length() == 0) ans=temp;
+        else ans = temp + " " + ans;
+        i=j+1;
+        temp="";
+    }
+	return ans;
+}}
