@@ -8,9 +8,6 @@ class Solution {
               res=num.substring(0,x+1);
               break;
             }
-            if(x==0 && r%2==1){
-             res=res+num.charAt(0);
-            }
           x--;
          }
         return res;
