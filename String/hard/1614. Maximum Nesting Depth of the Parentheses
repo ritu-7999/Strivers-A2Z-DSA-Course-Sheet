@@ -1,0 +1,16 @@
+class Solution {
+    public int maxDepth(String s) {
+        int max=0;
+         int z=0;
+        for(char c:s.toCharArray()){
+            if(c=='('){
+                z++;
+                max=Math.max(z,max);
+            }
+            if(c==')'){
+                z--;
+            }
+        }
+        return max;
+    }
+}
