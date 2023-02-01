@@ -1,0 +1,28 @@
+class Solution {
+    public int myAtoi(String s) {
+        s=s.trim();
+        long  x=0;
+        boolean b= true;
+        if(s.length()==0) return 0;
+        if(s.charAt(0) == '-') b = false;
+        int MIN=Integer.MIN_VALUE;
+        int MAX=Integer.MAX_VALUE;
+int i = (s.charAt(0) == '+' || s.charAt(0) == '-') ? 1 : 0;
+       while(i < s.length()) {
+            if(s.charAt(i) == ' ' || !Character.isDigit(s.charAt(i))) break;
+            x = x * 10 + s.charAt(i)-'0';
+            // check the conditions
+            if(b == false && -1*x < MIN) return MIN;
+            if(b == true && x > MAX) return MAX;
+            
+            i++;
+        }
+       if(!b){
+           return (int)(x*-1);
+       } 
+      
+       
+      
+       return (int)x;
+    }
+}
